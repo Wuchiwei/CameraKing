@@ -12,6 +12,7 @@
 		3C55F33A1F78A4900036CD31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C55F3381F78A4900036CD31 /* Main.storyboard */; };
 		3C55F33C1F78A4900036CD31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C55F33B1F78A4900036CD31 /* Assets.xcassets */; };
 		3C55F33F1F78A4900036CD31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C55F33D1F78A4900036CD31 /* LaunchScreen.storyboard */; };
+		3C7BCE941F7DDF0C00AB32E0 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BCE931F7DDF0C00AB32E0 /* EntryViewController.swift */; };
 		A868D83319D6210B562BDBC4 /* Pods_HackPhotoManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77E60116A0FE5F6A99A81D4 /* Pods_HackPhotoManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		3C55F33B1F78A4900036CD31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3C55F33E1F78A4900036CD31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C55F3401F78A4900036CD31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C7BCE931F7DDF0C00AB32E0 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryViewController.swift; path = Controller/EntryViewController.swift; sourceTree = "<group>"; };
 		A4993D9616B5A0B4B4AEA9C6 /* Pods-HackPhotoManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackPhotoManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackPhotoManager/Pods-HackPhotoManager.release.xcconfig"; sourceTree = "<group>"; };
 		E77E60116A0FE5F6A99A81D4 /* Pods_HackPhotoManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackPhotoManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -41,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C55A2721F7CB92F0075F403 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3C7BCE981F7DE07900AB32E0 /* Camera */,
+				3C7BCE971F7DE07000AB32E0 /* Entry */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		3C55F3281F78A4900036CD31 = {
 			isa = PBXGroup;
 			children = (
@@ -62,14 +73,30 @@
 		3C55F3331F78A4900036CD31 /* HackPhotoManager */ = {
 			isa = PBXGroup;
 			children = (
+				3C55A2721F7CB92F0075F403 /* Controller */,
 				3C55F3341F78A4900036CD31 /* AppDelegate.swift */,
-				3C55F3361F78A4900036CD31 /* CameraViewController.swift */,
 				3C55F3381F78A4900036CD31 /* Main.storyboard */,
 				3C55F33B1F78A4900036CD31 /* Assets.xcassets */,
 				3C55F33D1F78A4900036CD31 /* LaunchScreen.storyboard */,
 				3C55F3401F78A4900036CD31 /* Info.plist */,
 			);
 			path = HackPhotoManager;
+			sourceTree = "<group>";
+		};
+		3C7BCE971F7DE07000AB32E0 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				3C7BCE931F7DDF0C00AB32E0 /* EntryViewController.swift */,
+			);
+			name = Entry;
+			sourceTree = "<group>";
+		};
+		3C7BCE981F7DE07900AB32E0 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				3C55F3361F78A4900036CD31 /* CameraViewController.swift */,
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 		AE87BF6AA469E54D78CCCDA6 /* Pods */ = {
@@ -219,6 +246,7 @@
 			files = (
 				3C55F3371F78A4900036CD31 /* CameraViewController.swift in Sources */,
 				3C55F3351F78A4900036CD31 /* AppDelegate.swift in Sources */,
+				3C7BCE941F7DDF0C00AB32E0 /* EntryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

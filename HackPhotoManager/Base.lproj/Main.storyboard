@@ -1,51 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bLd-dC-g7p">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Camera View Controller-->
+        <!--Entry View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="HackPhotoManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EntryViewController" customModule="HackPhotoManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0l8-nJ-S0l">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="314"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tug-Gq-EoG">
-                                <rect key="frame" x="158" y="676" width="99" height="30"/>
-                                <state key="normal" title="Choose Image"/>
-                                <connections>
-                                    <action selector="chooseImage" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ghy-lR-5VA"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Slide left  to take picture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBi-uq-OHr">
+                                <rect key="frame" x="-6" y="264.5" width="332" height="39"/>
+                                <fontDescription key="fontDescription" name="PingFangTC-Medium" family="PingFang TC" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tug-Gq-EoG" secondAttribute="bottom" constant="30" id="Sbe-e4-MEp"/>
-                            <constraint firstItem="tug-Gq-EoG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dOS-5S-8Od"/>
+                            <constraint firstItem="sBi-uq-OHr" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Luk-ow-LDe"/>
+                            <constraint firstItem="sBi-uq-OHr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ixL-uK-ZQp"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Bu8-6z-JjS"/>
                     <connections>
-                        <outlet property="imageView" destination="0l8-nJ-S0l" id="KDL-fs-0Z1"/>
+                        <segue destination="2ep-0s-QpC" kind="show" identifier="OpenCamera" id="2KJ-HO-NCV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="115.94202898550725" y="122.28260869565219"/>
+            <point key="canvasLocation" x="430" y="-89"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="Pa9-l6-cLA">
+            <objects>
+                <viewController id="2ep-0s-QpC" customClass="CameraViewController" customModule="HackPhotoManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YlV-NY-Y5j"/>
+                        <viewControllerLayoutGuide type="bottom" id="RmM-Gv-Wft"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hjx-sg-deG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0iU-2F-ox9">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Jhn-oO-gkE"/>
+                                </constraints>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KqE-tg-INN">
+                                <rect key="frame" x="0.0" y="44" width="320" height="426.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" secondItem="KqE-tg-INN" secondAttribute="width" multiplier="4:3" id="7JS-4q-w72"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggT-Tz-0uS">
+                                <rect key="frame" x="128.5" y="487.5" width="64" height="64"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="fxi-Ln-e0y"/>
+                                    <constraint firstAttribute="width" secondItem="ggT-Tz-0uS" secondAttribute="height" multiplier="1:1" id="hlE-CK-LUM"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="takePicture" destination="2ep-0s-QpC" eventType="touchUpInside" id="x7i-Ja-5SO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vob-Pw-Sq6">
+                                <rect key="frame" x="8" y="499" width="40" height="40"/>
+                                <state key="normal" image="icon_turncam"/>
+                                <connections>
+                                    <action selector="turnCamera" destination="2ep-0s-QpC" eventType="touchUpInside" id="Vm7-Ae-TQW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGn-lP-2JZ">
+                                <rect key="frame" x="272" y="499" width="40" height="40"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="icon_size"/>
+                                <connections>
+                                    <action selector="openSizePicker" destination="2ep-0s-QpC" eventType="touchUpInside" id="BON-cd-hFM"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YLr-A1-KJ8">
+                                <rect key="frame" x="0.0" y="470" width="320" height="97.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="ggT-Tz-0uS" firstAttribute="centerY" secondItem="YLr-A1-KJ8" secondAttribute="centerY" id="8wJ-3h-Eh9"/>
+                            <constraint firstItem="JGn-lP-2JZ" firstAttribute="trailing" secondItem="YLr-A1-KJ8" secondAttribute="trailingMargin" id="BKm-Is-iGp"/>
+                            <constraint firstItem="JGn-lP-2JZ" firstAttribute="height" secondItem="vob-Pw-Sq6" secondAttribute="height" id="HTp-yM-JoA"/>
+                            <constraint firstItem="RmM-Gv-Wft" firstAttribute="top" secondItem="YLr-A1-KJ8" secondAttribute="bottom" id="IdQ-ta-YnL"/>
+                            <constraint firstItem="0iU-2F-ox9" firstAttribute="top" secondItem="YlV-NY-Y5j" secondAttribute="bottom" id="IxD-zf-ete"/>
+                            <constraint firstItem="KqE-tg-INN" firstAttribute="top" secondItem="0iU-2F-ox9" secondAttribute="bottom" id="O9m-JM-IJa"/>
+                            <constraint firstItem="0iU-2F-ox9" firstAttribute="leading" secondItem="Hjx-sg-deG" secondAttribute="leading" id="RrU-ny-eAs"/>
+                            <constraint firstItem="JGn-lP-2JZ" firstAttribute="centerY" secondItem="ggT-Tz-0uS" secondAttribute="centerY" id="Wgw-bi-B4o"/>
+                            <constraint firstItem="YLr-A1-KJ8" firstAttribute="leading" secondItem="Hjx-sg-deG" secondAttribute="leading" id="X9x-Y5-WS8"/>
+                            <constraint firstAttribute="trailing" secondItem="0iU-2F-ox9" secondAttribute="trailing" id="Zmm-iK-3y0"/>
+                            <constraint firstAttribute="trailing" secondItem="KqE-tg-INN" secondAttribute="trailing" id="bYg-Gs-MBT"/>
+                            <constraint firstItem="JGn-lP-2JZ" firstAttribute="width" secondItem="vob-Pw-Sq6" secondAttribute="width" id="dF6-bh-Pok"/>
+                            <constraint firstItem="ggT-Tz-0uS" firstAttribute="centerX" secondItem="Hjx-sg-deG" secondAttribute="centerX" id="e6i-eV-37S"/>
+                            <constraint firstAttribute="trailing" secondItem="YLr-A1-KJ8" secondAttribute="trailing" id="f9F-2V-Ja5"/>
+                            <constraint firstItem="vob-Pw-Sq6" firstAttribute="centerY" secondItem="ggT-Tz-0uS" secondAttribute="centerY" id="fOW-Fi-JpO"/>
+                            <constraint firstItem="YLr-A1-KJ8" firstAttribute="top" secondItem="KqE-tg-INN" secondAttribute="bottom" id="fgu-Ha-2ky"/>
+                            <constraint firstItem="KqE-tg-INN" firstAttribute="leading" secondItem="Hjx-sg-deG" secondAttribute="leading" id="l7J-WR-YJL"/>
+                            <constraint firstItem="YLr-A1-KJ8" firstAttribute="leadingMargin" secondItem="vob-Pw-Sq6" secondAttribute="leading" id="vfd-jO-j4g"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="cameraView" destination="KqE-tg-INN" id="QaI-pb-dRv"/>
+                        <outlet property="statusView" destination="0iU-2F-ox9" id="4Cm-EW-PCI"/>
+                        <outlet property="takePicButton" destination="ggT-Tz-0uS" id="dlF-aA-CwI"/>
+                        <outlet property="toolView" destination="YLr-A1-KJ8" id="Xv7-sX-ae3"/>
+                        <outlet property="viewSizeButton" destination="JGn-lP-2JZ" id="xfu-2z-paV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t9z-x6-Ijk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="-91.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mea-nB-EXD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bLd-dC-g7p" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5KM-18-SAU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Qd7-R1-WQb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8vt-Nv-a84" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-442" y="-90"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon_size" width="16" height="16"/>
+        <image name="icon_turncam" width="40" height="40"/>
+    </resources>
 </document>

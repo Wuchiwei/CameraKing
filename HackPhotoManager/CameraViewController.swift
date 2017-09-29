@@ -8,53 +8,133 @@
 
 import UIKit
 
-class CameraViewController: UIViewController {
+let kSeguecameraPicker = "CameraPicker"
 
-    @IBOutlet weak var imageView: UIImageView!
+class CameraViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+
+    @IBOutlet weak var statusView: UIView!
+    @IBOutlet weak var toolView: UIView!
+    @IBOutlet weak var cameraView: UIView!
+    @IBOutlet weak var takePicButton: UIButton!
+    @IBOutlet weak var viewSizeButton: UIButton!
     
+    var imagePickerVC: UIImagePickerController?
+    
+    //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = true
+        self.setupLayout()
     }
     
-    @IBAction func chooseImage() {
-        
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        
-        let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a resource", preferredStyle: .actionSheet)
-        
-        actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action: UIAlertAction) in
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                imagePickerController.sourceType = .camera
-                self.present(imagePickerController, animated: true, completion: nil)
-            } else {
-                print("Camera is not avalible")
-            }
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action: UIAlertAction) in
-            imagePickerController.sourceType = .photoLibrary
-            self.present(imagePickerController, animated: true, completion: nil)
-        }))
-        
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.viewSizeButton.layer.cornerRadius = self.viewSizeButton.frame.size.width / 2.0
+    }
     
-        self.present(actionSheet, animated: true, completion: nil)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
+    //MARK: Layout & Animations
+    func setupLayout() {
+        self.setupImagePickerViewController()
+        self.setupTakePicButton()
+        self.setupToolView()
+    }
+    
+    func setupToolView() {
+        self.toolView.alpha = 0.0
+        self.toolView.isUserInteractionEnabled = false
+    }
+    
+    func setupImagePickerViewController() {
+        
+        if !UIImagePickerController.isSourceTypeAvailable(.camera) {
+            print("Camera is not avaliable")
+            return
+        }
+        
+        let imagePickerVC = UIImagePickerController()
+        imagePickerVC.sourceType = .camera
+        imagePickerVC.delegate = self
+        imagePickerVC.showsCameraControls = false
+        imagePickerVC.navigationController?.navigationBar.isHidden = true
+        
+        self.addChildViewController(imagePickerVC)
+        
+        self.cameraView.addSubview(imagePickerVC.view)
+        imagePickerVC.view.translatesAutoresizingMaskIntoConstraints = false
+        imagePickerVC.view.centerXAnchor.constraint(equalTo: self.cameraView.centerXAnchor).isActive = true
+        imagePickerVC.view.centerYAnchor.constraint(equalTo: self.cameraView.centerYAnchor).isActive = true
+        imagePickerVC.view.heightAnchor.constraint(equalTo: self.cameraView.heightAnchor).isActive = true
+        imagePickerVC.view.widthAnchor.constraint(equalTo: self.cameraView.widthAnchor).isActive = true
+        
+        imagePickerVC.didMove(toParentViewController: self)
+        self.imagePickerVC = imagePickerVC
+    }
+
+    func setupTakePicButton() {
+        self.takePicButton.layer.cornerRadius = 32.0;
+        self.takePicButton.layer.borderColor = UIColor.lightGray.cgColor
+        self.takePicButton.layer.borderWidth = 4.0
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    //MARK: Actions
+    @IBAction func takePicture() {
+        self.imagePickerVC?.takePicture()
+    }
+    
+    @IBAction func turnCamera() {
+        guard let imagePickerVC = self.imagePickerVC else { return }
+        
+        switch imagePickerVC.cameraDevice {
+        case .front:
+            imagePickerVC.cameraDevice = .rear
+        case .rear:
+            imagePickerVC.cameraDevice = .front
+        }
+    }
+    
+    @IBAction func openSizePicker() {
+        UIView.animate(withDuration: 0.3) {
+            self.toolView.alpha = 1.0
+            self.toolView.isUserInteractionEnabled = true
+        }
+    }
+    
+    //MARK: Support Method
+    func scale(image:UIImage, toScale scale:CGFloat) -> UIImage? {
+        let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(origin: CGPoint.init(x: 0.0, y: 0.0), size: size))
+        guard let scaleImage = UIGraphicsGetImageFromCurrentImageContext() else { return nil }
+        return scaleImage
     }
 }
 
-extension CameraViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        
-        imageView.image = image
-        
-        picker.dismiss(animated:true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-}
+ extension CameraViewController {
+     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+         guard let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+         guard let originData = UIImageJPEGRepresentation(originImage, 1) else { return }
+         print("origin data file size \(originData.count)")
+         guard let scaleImage = self.scale(image: originImage, toScale: 0.5) else { return }
+         guard let scaleData = UIImageJPEGRepresentation(scaleImage, 1) else { return }
+         print("scale data file size: \(scaleData.count)")
+         UIImageWriteToSavedPhotosAlbum(scaleImage, nil, nil, nil)
+     }
+     
+     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+     
+     }
+ }
+

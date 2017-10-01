@@ -123,18 +123,25 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
 }
 
  extension CameraViewController {
-     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-         guard let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
-         guard let originData = UIImageJPEGRepresentation(originImage, 1) else { return }
-         print("origin data file size \(originData.count)")
-         guard let scaleImage = self.scale(image: originImage, toScale: 0.5) else { return }
-         guard let scaleData = UIImageJPEGRepresentation(scaleImage, 1) else { return }
-         print("scale data file size: \(scaleData.count)")
-         UIImageWriteToSavedPhotosAlbum(scaleImage, nil, nil, nil)
-     }
-     
-     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-     
-     }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
+        guard let originData = UIImageJPEGRepresentation(originImage, 1) else { return }
+        print("origin data file size \(originData.count)")
+        
+        guard let scaleImage = self.scale(image: originImage, toScale: 0.5) else { return }
+        guard let scaleData = UIImageJPEGRepresentation(scaleImage, 1) else { return }
+        print("scale data file size: \(scaleData.count)")
+        
+        UIImageWriteToSavedPhotosAlbum(scaleImage, nil, nil, nil)
+        self.closeController()
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.closeController()
+    }
+    
+    func closeController() {
+        self.navigationController?.popViewController(animated: true)
+    }
  }
 

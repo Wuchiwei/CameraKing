@@ -76,7 +76,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggT-Tz-0uS">
-                                <rect key="frame" x="128.5" y="487.5" width="64" height="64"/>
+                                <rect key="frame" x="128" y="488" width="64" height="64"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="Lfc-zo-feC"/>
@@ -87,14 +87,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vob-Pw-Sq6">
-                                <rect key="frame" x="16" y="499" width="40" height="40"/>
+                                <rect key="frame" x="16" y="500" width="40" height="40"/>
                                 <state key="normal" image="icon_turncam"/>
                                 <connections>
                                     <action selector="turnCamera" destination="2ep-0s-QpC" eventType="touchUpInside" id="Vm7-Ae-TQW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGn-lP-2JZ">
-                                <rect key="frame" x="264" y="499" width="40" height="40"/>
+                                <rect key="frame" x="264" y="500" width="40" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" image="icon_size"/>
                                 <connections>
@@ -108,7 +108,7 @@
                                     <constraint firstAttribute="height" constant="64" id="aPj-Bg-de1"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="8Rt-0M-3AZ" kind="embed" id="UM8-In-yIQ"/>
+                                    <segue destination="8Rt-0M-3AZ" kind="embed" identifier="OpenSizePicker" id="UM8-In-yIQ"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -185,7 +185,7 @@
                                 <rect key="frame" x="0.0" y="10" width="320" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rNH-Ag-wxU">
-                                    <size key="itemSize" width="76" height="44"/>
+                                    <size key="itemSize" width="120" height="44"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -197,14 +197,14 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SizeCell" id="BAO-j9-JHi" customClass="PhotoSizeCollectionCell" customModule="HackPhotoManager" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="76" height="44"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="76" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFs-9w-8ig">
-                                                    <rect key="frame" x="5" y="5" width="66" height="34"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3000 X 4000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFs-9w-8ig">
+                                                    <rect key="frame" x="5" y="5" width="110" height="34"/>
                                                     <fontDescription key="fontDescription" name="PingFangTC-Regular" family="PingFang TC" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -242,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d97-pf-hMU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1382" y="425"/>
+            <point key="canvasLocation" x="1500" y="428"/>
         </scene>
     </scenes>
     <resources>

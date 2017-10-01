@@ -14,6 +14,20 @@ class CameraSizeViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    fileprivate var selectedSize: Int?
+    
+    var touchHandler: (()->())?
+    
+    let sizes = PhotoSizeManager().photoSizes
+    
+    var sizeScale: Double {
+        guard let index = self.selectedSize else {
+            guard let scale = self.sizes.last?.rawValue else { return 1.0 }
+            return scale
+        }
+        return self.sizes[index].rawValue
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clear
@@ -24,16 +38,23 @@ class CameraSizeViewController: UIViewController {
 extension CameraSizeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10;
+        return self.sizes.count;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kIdentifyCell, for: indexPath)
         guard let sizeCell = cell as? PhotoSizeCollectionCell else { return cell }
+        sizeCell.sizeLabel.text = self.sizes[indexPath.row].representString()
         return cell
     }
 }
 
 extension CameraSizeViewController: UICollectionViewDelegateFlowLayout {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        self.selectedSize = indexPath.row
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            self?.touchHandler?()
+        }
+    }
 }

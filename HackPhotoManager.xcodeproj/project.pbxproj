@@ -15,6 +15,7 @@
 		3C55F33C1F78A4900036CD31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C55F33B1F78A4900036CD31 /* Assets.xcassets */; };
 		3C55F33F1F78A4900036CD31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C55F33D1F78A4900036CD31 /* LaunchScreen.storyboard */; };
 		3C7BCE941F7DDF0C00AB32E0 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C7BCE931F7DDF0C00AB32E0 /* EntryViewController.swift */; };
+		3CD0313B1F80E30E00C2825B /* PhotoSizeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0313A1F80E30E00C2825B /* PhotoSizeManager.swift */; };
 		A868D83319D6210B562BDBC4 /* Pods_HackPhotoManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E77E60116A0FE5F6A99A81D4 /* Pods_HackPhotoManager.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		3C55F33E1F78A4900036CD31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C55F3401F78A4900036CD31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C7BCE931F7DDF0C00AB32E0 /* EntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EntryViewController.swift; path = Controller/EntryViewController.swift; sourceTree = "<group>"; };
+		3CD0313A1F80E30E00C2825B /* PhotoSizeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhotoSizeManager.swift; path = Model/PhotoSizeManager.swift; sourceTree = "<group>"; };
 		A4993D9616B5A0B4B4AEA9C6 /* Pods-HackPhotoManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HackPhotoManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-HackPhotoManager/Pods-HackPhotoManager.release.xcconfig"; sourceTree = "<group>"; };
 		E77E60116A0FE5F6A99A81D4 /* Pods_HackPhotoManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HackPhotoManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -87,6 +89,7 @@
 			children = (
 				3C55A2721F7CB92F0075F403 /* Controller */,
 				3C3AA28F1F7E545500FD4DDA /* View */,
+				3CD031391F80E2D400C2825B /* Model */,
 				3C55F3341F78A4900036CD31 /* AppDelegate.swift */,
 				3C55F3381F78A4900036CD31 /* Main.storyboard */,
 				3C55F33B1F78A4900036CD31 /* Assets.xcassets */,
@@ -111,6 +114,14 @@
 				3C3AA28D1F7E3CF100FD4DDA /* CameraSizeViewController.swift */,
 			);
 			name = Camera;
+			sourceTree = "<group>";
+		};
+		3CD031391F80E2D400C2825B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3CD0313A1F80E30E00C2825B /* PhotoSizeManager.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		AE87BF6AA469E54D78CCCDA6 /* Pods */ = {
@@ -263,6 +274,7 @@
 				3C3AA2911F7E54A100FD4DDA /* PhotoSizeCollectionCell.swift in Sources */,
 				3C55F3351F78A4900036CD31 /* AppDelegate.swift in Sources */,
 				3C7BCE941F7DDF0C00AB32E0 /* EntryViewController.swift in Sources */,
+				3CD0313B1F80E30E00C2825B /* PhotoSizeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

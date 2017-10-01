@@ -8,15 +8,17 @@
 
 import UIKit
 
-let kSeguecameraPicker = "CameraPicker"
+let kSizePicker = "OpenSizePicker"
 
-class CameraViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class CameraViewController: UIViewController {
 
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var toolView: UIView!
     @IBOutlet weak var cameraView: UIView!
     @IBOutlet weak var takePicButton: UIButton!
     @IBOutlet weak var viewSizeButton: UIButton!
+    
+    weak var sizeVC: CameraSizeViewController?
     
     var imagePickerVC: UIImagePickerController?
     
@@ -112,6 +114,23 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
         }
     }
     
+    //MARK: Segues
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        switch identifier {
+        case kSizePicker:
+            guard let vc = segue.destination as? CameraSizeViewController else { return }
+            self.sizeVC = vc
+            vc.touchHandler = { [weak self] in
+                self?.setupToolView()
+            }
+            return
+        default:
+            return
+        }
+        
+    }
+    
     //MARK: Support Method
     func scale(image:UIImage, toScale scale:CGFloat) -> UIImage? {
         let size = CGSize(width: image.size.width * scale, height: image.size.height * scale)
@@ -122,18 +141,24 @@ class CameraViewController: UIViewController, UINavigationControllerDelegate, UI
     }
 }
 
- extension CameraViewController {
+    //MARK: UIImagePickerControllerDelegate
+
+extension CameraViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let originImage = info[UIImagePickerControllerOriginalImage] as? UIImage else { return }
         guard let originData = UIImageJPEGRepresentation(originImage, 1) else { return }
         print("origin data file size \(originData.count)")
+        print("origin pic size: \(originImage.size)")
         
-        guard let scaleImage = self.scale(image: originImage, toScale: 0.5) else { return }
+        let scale = self.sizeVC?.sizeScale ?? 1.0
+        guard let scaleImage = self.scale(image: originImage, toScale: CGFloat(scale)) else { return }
         guard let scaleData = UIImageJPEGRepresentation(scaleImage, 1) else { return }
         print("scale data file size: \(scaleData.count)")
+        print("scale pic size: \(scaleImage.size)")
         
         UIImageWriteToSavedPhotosAlbum(scaleImage, nil, nil, nil)
-        self.closeController()
+//        self.closeController()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
